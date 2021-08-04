@@ -84,4 +84,29 @@ class RestaurantTest {
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+    @Test
+    public void total_value_of_bill_should_match_the_actual_amount_of_all_the_items_selected(){
+        List<String> selectedItems = new ArrayList<String>();
+        selectedItems.add("Sweet corn soup");
+        selectedItems.add("Vegetable lasagne");
+        Double totalAmountExpected = 119.0 + 269.0;
+        Double actualAmount = restaurant.totalOrderValue(selectedItems);
+        assertEquals(actualAmount,totalAmountExpected);
+    }
+
+    @Test
+    public void total_value_of_bill_must_be_zero_if_no_items_selected(){
+        List<String> selectedItems = new ArrayList<String>();
+        Double actualAmount = restaurant.totalOrderValue(selectedItems);
+        assertEquals(actualAmount,0.0);
+    }
+
+    @Test
+    public void total_value_of_bill_must_match_the_value_of_items_selected_when_only_some_items_are_selected(){
+        List<String> selectedItems = new ArrayList<String>();
+        selectedItems.add("Vegetable lasagne");
+        Double totalAmountExpected = 269.0;
+        Double actualAmount = restaurant.totalOrderValue(selectedItems);
+        assertEquals(actualAmount,totalAmountExpected);
+    }
 }
