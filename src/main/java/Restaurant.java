@@ -70,4 +70,17 @@ public class Restaurant {
         return name;
     }
 
+    public double totalOrderValue(List<String> selectedItems){
+        double totalValueOfSelectedItems = 0;
+        for (String itemSelected: selectedItems){
+            Item items = findItemByName(itemSelected);
+            if (items != null){
+                String itemNameAndValue = items.toString();
+                String itemValue = itemNameAndValue.replace(items.getName() + ":","");
+                totalValueOfSelectedItems += Double.parseDouble(itemValue);
+            }
+        }
+        return totalValueOfSelectedItems;
+    }
+
 }
